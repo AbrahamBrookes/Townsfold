@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Town;
+use App\Http\Resources\TownResource;
 use Illuminate\Http\Request;
 
 class TownController extends Controller
@@ -14,7 +15,8 @@ class TownController extends Controller
      */
     public function index()
     {
-        //
+        // pipe it all through here
+        return TownResource::collection(Town::with('families.members')->get());
     }
 
     /**

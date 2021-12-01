@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-class EastAardlandSeeder extends Seeder
+class KatagayamaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,33 +16,33 @@ class EastAardlandSeeder extends Seeder
     {
         // create the culture
         $culture = \App\Models\Culture::create([
-            'name' => 'Aardish',
-            'nation_name' => 'East Aardland',
-            'language' => 'Aardish',
+            'name' => 'Katagayaman',
+            'nation_name' => 'Katagayama',
+            'language' => 'Katagayaman',
         ]);
 
         // create towns
-        $numTowns = 1;
-        include('GeneratedNames/Locations/TownsInEastAardland.php');
+        $numTowns = 32;
+        include('GeneratedNames/Locations/TownsInKatagayama.php');
         $towns = [];
         for ($i = 0; $i < $numTowns; $i++) {
             $towns[] = \App\Models\Town::create([
-                'name' => Faker::create()->randomElement($TownsInEastAardland),
+                'name' => Faker::create()->randomElement($TownsInKatagayama),
                 'culture_id' => $culture->id,
             ]);
         }
 
         // for each town create a couple of families
         // a Family occupies a House in the town, so this should loosely match the number of houses
-        include('GeneratedNames/People/SurnamesInEastAardland.php');
-        include('GeneratedNames/People/GirlsNamesInEastAardland.php');
-        include('GeneratedNames/People/BoysNamesInEastAardland.php');
+        include('GeneratedNames/People/SurnamesInKatagayama.php');
+        include('GeneratedNames/People/GirlsNamesInKatagayama.php');
+        include('GeneratedNames/People/BoysNamesInKatagayama.php');
         $families = [];
         foreach ($towns as $town) {
-            $numFamilies = 10;
+            $numFamilies = rand(5, 12);
             for ($i = 0; $i < $numFamilies; $i++) {
-                $families[] = \App\Models\Family::create([
-                    'surname' => Faker::create()->randomElement($SurnamesInEastAardland),
+                $families[$i] = \App\Models\Family::create([
+                    'surname' => Faker::create()->randomElement($SurnamesInKatagayama),
                     'town_id' => $town->id,
                 ]);
 
@@ -50,12 +50,12 @@ class EastAardlandSeeder extends Seeder
                 $families[$i]->members()->createMany([
                     [
                         'family_id' => $families[$i]->id,
-                        'name' => Faker::create()->randomElement($GirlsNamesInEastAardland),
+                        'name' => Faker::create()->randomElement($GirlsNamesInKatagayama),
                         'gender' => 'F'
                     ],
                     [
                         'family_id' => $families[$i]->id,
-                        'name' => Faker::create()->randomElement($BoysNamesInEastAardland),
+                        'name' => Faker::create()->randomElement($BoysNamesInKatagayama),
                         'gender' => 'M'
                     ]
                 ]);
@@ -65,7 +65,7 @@ class EastAardlandSeeder extends Seeder
                     $gender = rand(0, 32) %2 == 0 ? 'F' : 'M';
                     $families[$i]->members()->create([
                         'family_id' => $families[$i]->id,
-                        'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInEastAardland : $BoysNamesInEastAardland),
+                        'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInKatagayama : $BoysNamesInKatagayama),
                         'gender' => $gender
                     ]);
                 }

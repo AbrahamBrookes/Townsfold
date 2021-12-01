@@ -14,7 +14,8 @@ class CultureSeeder extends Seeder
     public function run($name)
     {
         if($name == 'East Aardland')
-            $this->call(EastAardlandSeeder::class);
+            $this->call(KatagayamaSeeder::class);
+            // $this->call(EastAardlandSeeder::class);
 
         // \App\Model\Culture::create([
         //     'name' => 'Katagayama',
