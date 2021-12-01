@@ -1,0 +1,72 @@
+.card {
+	padding-top: 8px;
+	cursor: pointer;
+
+	* {
+		cursor: pointer;
+	}
+
+	h1 {
+		font-size: 16px;
+		text-decoration: underline;
+	}
+
+	h2 {
+		font-size: 14px;
+	}
+
+	.image {
+		padding-top: 61.32%;
+		background-color: #c3c3c3
+	}
+}
+
+.small-card {
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+}
+
+fieldset {
+	border: 1px solid #c3c3c3 !important;
+	border-radius: 4px !important;
+	margin: 4px !important;
+	width: calc(100% - 8px) !important;
+}
+
+legend {
+	float: none !important;
+	line-height: initial !important;
+	width: initial !important;
+	padding: initial !important;
+	margin-bottom: initial !important;
+	font-size: 12px !important;
+	font-style: italic !important;
+	padding: 0 4px !important;
+	opacity: 0.8 !important;
+}
+
+
+.text-right {
+	text-align: right;
+}
+
+.float-right {
+	float: right;
+}
+
+.no-child-pointer-events * {
+	pointer-events: none;
+}
+
+.card-type {
+	border-bottom: 1px solid lightgrey;
+    font-size: 0.7rem;
+    text-align: right;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+}
+
+.pointer {
+	cursor: pointer;
+}
