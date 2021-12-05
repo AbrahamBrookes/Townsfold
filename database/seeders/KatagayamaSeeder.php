@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use App\Models\Building;
 
 class KatagayamaSeeder extends Seeder
 {
@@ -32,15 +33,53 @@ class KatagayamaSeeder extends Seeder
             ]);
         }
 
-        // for each town create a couple of families
-        // a Family occupies a House in the town, so this should loosely match the number of houses
+        // include our seed name data
         include('GeneratedNames/People/SurnamesInKatagayama.php');
         include('GeneratedNames/People/GirlsNamesInKatagayama.php');
         include('GeneratedNames/People/BoysNamesInKatagayama.php');
         $families = [];
         foreach ($towns as $town) {
-            $numFamilies = rand(5, 12);
-            for ($i = 0; $i < $numFamilies; $i++) {
+
+            // for each town, add some buildings
+            // houses will house families
+            $numHouses = rand(5, 12);
+            Building::factory()->house()->count($numHouses)->create([
+                'town_id' => $town->id,
+            ]);
+
+            // a storehouse
+            $storehouse = Building::factory()->storehouse()->create([
+                'town_id' => $town->id,
+            ]);
+
+            // pretty good chance they have a tavern
+            if (rand(0, 100) < 10) {
+                Building::factory()->tavern()->create([
+                    'town_id' => $town->id,
+                ]);
+            }
+
+            // likely a butcher
+            if (rand(0, 100) < 60) {
+                Building::factory()->butcher()->create([
+                    'town_id' => $town->id,
+                ]);
+            }
+
+            // likely a woodshack
+            if (rand(0, 100) < 60) {
+                Building::factory()->woodshack()->create([
+                    'town_id' => $town->id,
+                ]);
+            }
+
+
+            
+
+            
+            // for each town create a couple of families
+            // a Family occupies a House in the town, so this should match the number of houses
+            for ($i = 0; $i < $numHouses; $i++) {
                 $families[$i] = \App\Models\Family::create([
                     'surname' => Faker::create()->randomElement($SurnamesInKatagayama),
                     'town_id' => $town->id,

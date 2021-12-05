@@ -19,8 +19,8 @@ class BuildingResource extends JsonResource
             'town_id' => $this->town_id,
             'name' => $this->name,
             'building_type_id' => $this->building_type_id,
-            'building_type' => new BuildingTypeResource($this->whenLoaded('buildingType')),
-            'jobs' => JobResource::collection($this->whenLoaded('jobs')),
+            'building_type' => new BuildingTypeResource($this->buildingType),
+            'jobs' => JobResource::collection($this->jobs),
         ];
     }
 }

@@ -15,6 +15,9 @@ class CreateBuildingsTable extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('town_id')->references('id')->on('towns');
+            $table->unsignedBigInteger('building_type_id')->references('id')->on('building_types');
+            $table->string('name');
             $table->timestamps();
         });
     }

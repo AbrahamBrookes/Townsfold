@@ -23,4 +23,9 @@ class Town extends Model
     {
         return $this->belongsTo(Culture::class);
     }
+
+    public function buildings()
+    {
+        return $this->hasMany(Building::class);
+    }
 }

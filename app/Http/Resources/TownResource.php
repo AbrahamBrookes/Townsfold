@@ -20,6 +20,7 @@ class TownResource extends JsonResource
             'culture_id' => $this->culture_id,
             'culture' => $this->culture,
             'families' => FamilyResource::collection($this->families),
+            'buildings' => BuildingResource::collection($this->buildings),
         ];
     }
 }

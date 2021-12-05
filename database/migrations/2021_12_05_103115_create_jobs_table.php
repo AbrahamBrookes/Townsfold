@@ -18,10 +18,10 @@ class CreateJobsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('building_id')->references('id')->on('buildings');
             $table->unsignedBigInteger('job_type_id')->references('id')->on('job_types');
-            $table->unsignedBigInteger('employee_id')->references('id')->on('employees');
-            $table->string('title');
-            $table->text('description');
-            $table->integer('salary');
+            $table->unsignedBigInteger('employee_id')->references('id')->on('employees')->nullable();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('salary')->nullable();
         });
     }
 

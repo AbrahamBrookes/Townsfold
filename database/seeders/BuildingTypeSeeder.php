@@ -27,7 +27,11 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Resident',
             'description' => 'Someone to live in a house.',
         ]);
-        $house->job_types()->sync([$resident->id, $resident->id, $resident->id, $resident->id, $resident->id]);
+        $house->job_types()->attach($resident->id);
+        $house->job_types()->attach($resident->id);
+        $house->job_types()->attach($resident->id);
+        $house->job_types()->attach($resident->id);
+        $house->job_types()->attach($resident->id);
 
         // A Tavern can have one Publican, four Tapstaff, one Steward, one Cook, one Kitchenhand and one Musician
         $tavern = BuildingType::create([
@@ -58,8 +62,16 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Musician',
             'description' => 'Someone to play music and entertain.',
         ]);
-        $tavern->job_types()->sync([$publican->id, $tapstaff->id, $tapstaff->id, $tapstaff->id, $tapstaff->id, $steward->id, $cook->id, $kitchenhand->id, $musician->id]);
-
+        $tavern->job_types()->attach($publican->id);
+        $tavern->job_types()->attach($tapstaff->id);
+        $tavern->job_types()->attach($tapstaff->id);
+        $tavern->job_types()->attach($tapstaff->id);
+        $tavern->job_types()->attach($tapstaff->id);
+        $tavern->job_types()->attach($steward->id);
+        $tavern->job_types()->attach($cook->id);
+        $tavern->job_types()->attach($kitchenhand->id);
+        $tavern->job_types()->attach($musician->id);
+        
         // a Storehouse has one Clerk, one Manager, four Storekeepers
         $storehouse = BuildingType::create([
             'name' => 'Storehouse',
@@ -77,8 +89,13 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Storekeeper',
             'description' => 'Someone to help out in the store.',
         ]);
-        $storehouse->job_types()->sync([$clerk->id, $storeManager->id, $storekeeper->id, $storekeeper->id, $storekeeper->id, $storekeeper->id]);
-
+        $storehouse->job_types()->attach($storekeeper->id);
+        $storehouse->job_types()->attach($storekeeper->id);
+        $storehouse->job_types()->attach($storekeeper->id);
+        $storehouse->job_types()->attach($storekeeper->id);
+        $storehouse->job_types()->attach($clerk->id);
+        $storehouse->job_types()->attach($storeManager->id);
+        
         // a Butcher has three Butchers
         $butcher = BuildingType::create([
             'name' => 'Butcher',
@@ -88,8 +105,10 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Butcher',
             'description' => 'Someone who chops and prepares meat.',
         ]);
-        $butcher->job_types()->sync([$butcherJob->id, $butcherJob->id, $butcherJob->id]);
-
+        $butcher->job_types()->attach($butcherJob->id);
+        $butcher->job_types()->attach($butcherJob->id);
+        $butcher->job_types()->attach($butcherJob->id);
+        
         // a Woodshack has one Clerk, one Foreman and four Choppers
         $woodshack = BuildingType::create([
             'name' => 'Woodshack',
@@ -103,7 +122,12 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Chopper',
             'description' => 'Someone to chop wood.',
         ]);
-        $woodshack->job_types()->sync([$clerk->id, $foreman->id, $chopper->id, $chopper->id, $chopper->id, $chopper->id]);
+        $woodshack->job_types()->attach($foreman->id);
+        $woodshack->job_types()->attach($clerk->id);
+        $woodshack->job_types()->attach($chopper->id);
+        $woodshack->job_types()->attach($chopper->id);
+        $woodshack->job_types()->attach($chopper->id);
+        $woodshack->job_types()->attach($chopper->id);
 
 
 

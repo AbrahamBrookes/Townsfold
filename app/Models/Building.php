@@ -25,4 +25,10 @@ class Building extends Model
     {
         return $this->belongsTo(BuildingType::class);
     }
+
+    // The Building can post Jobs and People can apply for Jobs.
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }
