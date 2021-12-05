@@ -24,13 +24,13 @@ export default {
                 bind: { id }
             })
         },
-        goToFamilyList() {
+        goToHouseholdList() {
             this.$store.commit('setCurrentEncyclopediaPage', {
                 component: () => import('@Household/Encyclopedia/List.vue'),
                 bind: {}
             })
         },
-        goToFamilyView(id) {
+        goToHouseholdView(id) {
             this.$store.commit('setCurrentEncyclopediaPage', {
                 component: () => import('@Household/Encyclopedia/View.vue'),
                 bind: { id }

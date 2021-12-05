@@ -77,11 +77,6 @@ class KatagayamaSeeder extends Seeder
             $noticeboard = Noticeboard::create([
                 'town_id' => $town->id,
             ]);
-
-            // all of the jobs that belong to our buildings get posted to the noticeboard
-            $town->buildings->each(function ($building) {
-                $building->advertiseJobs();
-            });
             
 
 
@@ -133,7 +128,12 @@ class KatagayamaSeeder extends Seeder
                 $households[$i]->findHouse();
             }
 
+            // all of the remaining jobs that belong to our buildings get posted to the noticeboard
+            $town->buildings->each(function ($building) {
+                $building->advertiseJobs();
+            });
 
+            // those people all need jobs as well
         }
 
         

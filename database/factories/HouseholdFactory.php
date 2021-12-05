@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Household;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FamilyFactory extends Factory
+class HouseholdFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

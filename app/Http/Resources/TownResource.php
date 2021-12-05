@@ -19,8 +19,9 @@ class TownResource extends JsonResource
             'name' => $this->name,
             'culture_id' => $this->culture_id,
             'culture' => $this->culture,
-            'households' => FamilyResource::collection($this->households),
+            'households' => HouseholdResource::collection($this->households),
             'buildings' => BuildingResource::collection($this->buildings),
+            'noticeboard' => new NoticeboardResource($this->noticeboard),
         ];
     }
 }

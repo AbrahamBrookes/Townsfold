@@ -30,6 +30,7 @@ mix.alias({
 	'@JobType': path.resolve(__dirname, 'resources/js/models/JobType'),
 	'@BuildingTypeJobType': path.resolve(__dirname, 'resources/js/models/BuildingTypeJobType'),
 	'@BuildingJob': path.resolve(__dirname, 'resources/js/models/BuildingJob'),
+	'@Noticeboard': path.resolve(__dirname, 'resources/js/models/Noticeboard'),
 	
 	// app
 	'@mixins': path.resolve(__dirname, 'resources/js/mixins'),

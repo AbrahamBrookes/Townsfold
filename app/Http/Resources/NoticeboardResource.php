@@ -14,6 +14,9 @@ class NoticeboardResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'town_id' => $this->town_id,
+        ];
     }
 }

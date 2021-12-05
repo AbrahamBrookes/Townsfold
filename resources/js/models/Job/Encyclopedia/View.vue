@@ -5,12 +5,12 @@
 
         <div class="town-households row">
             <div class="col-4"
-                v-for="householdold in households"
-                :key="householdold.id"
-                @click="goToFamilyView(householdold.id)"
+                v-for="household in households"
+                :key="household.id"
+                @click="goToHouseholdView(household.id)"
             >
-                <householdold-card
-                    :item="householdold"
+                <household-card
+                    :item="household"
                 />
                 
             </div>
@@ -23,7 +23,7 @@ import Town from '@Town';
 import Household from '@Household';
 import Culture from '@Culture';
 
-import FamilyCard from '@Household/Encyclopedia/Card';
+import HouseholdCard from '@Household/Encyclopedia/Card';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
 
@@ -31,7 +31,7 @@ export default {
     props: ['id'],
     mixins: [ RequiresEncyclopediaRoutes ],
     components: {
-        FamilyCard,
+        HouseholdCard,
     },
     computed: {
         town() {

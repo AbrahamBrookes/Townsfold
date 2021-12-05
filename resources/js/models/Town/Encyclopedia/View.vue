@@ -3,20 +3,14 @@
         <h1>The Township of {{ town.name }}</h1>
         <h2 class="mb-4">In the prefecture of <span class="pointer" @click="goToCultureView(culture.id)">{{ culture.nation_name }}</span></h2>
 
-        <div class="town-households row">
-            <div class="col-4"
-                v-for="household in households"
-                :key="household.id"
-                @click="goToFamilyView(household.id)"
-            >
-                <household-card
-                    :item="household"
-                />
-                
-            </div>
-        </div>
+        <h3>Families</h3>
+        <households-list :items="households" />
 
+        <h3>Buildings</h3>
         <buildings-list :items="buildings" />
+
+        <h3>Jobs</h3>
+        <jobs-list :items="jobs" />
     </div>
 </template>
 
@@ -25,9 +19,12 @@ import Town from '@Town';
 import Household from '@Household';
 import Culture from '@Culture';
 import Building from '@Building';
+import Noticeboard from '@Noticeboard';
+import Job from '@Job';
 
-import FamilyCard from '@Household/Encyclopedia/Card';
+import HouseholdsList from '@Household/Encyclopedia/List';
 import BuildingsList from '@Building/Encyclopedia/List';
+import JobsList from '@Job/Encyclopedia/List';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
 
@@ -35,8 +32,9 @@ export default {
     props: ['id'],
     mixins: [ RequiresEncyclopediaRoutes ],
     components: {
-        FamilyCard,
+        HouseholdsList,
         BuildingsList,
+        JobsList,
     },
     computed: {
         town() {
@@ -50,7 +48,13 @@ export default {
         },
         buildings(){
             return Building.query().where('town_id', this.id).get();
-        }
+        },
+        noticeboard(){
+            return Noticeboard.query().where('town_id', this.id).first();
+        },
+        jobs(){
+            return Job.query().where('noticeboard_id', this.noticeboard.id).where('employee_id', null).get();
+        },
     },
 }
 </script>

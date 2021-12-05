@@ -5,6 +5,7 @@ import { Model } from '@vuex-orm/core'
 import JobType from '@JobType'
 import Building from '@Building'
 import Person from '@Person'
+import Noticeboard from '@Noticeboard'
 
 export default class Job extends Model {
 	// This is the name used as module name of the Vuex Store.
@@ -23,6 +24,8 @@ export default class Job extends Model {
 			building: this.belongsTo(Building, 'building_id'),
 			employee_id: this.attr(''),
 			employee: this.belongsTo(Person, 'employee_id'),
+			noticeboard_id: this.attr(''),
+			noticeboard: this.belongsTo(Noticeboard, 'noticeboard_id'),
 		}
 	}
 

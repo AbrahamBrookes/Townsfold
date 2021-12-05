@@ -1,27 +1,28 @@
 <template>
-    <div class="householdold-list">
+    <div class="household-list row">
         <div 
-            v-for="householdold in households" 
-            :key="householdold.id"
-            @click="goToFamilyView(householdold.id)"
-            class="pointer"
+            class="col-4"
+            v-for="item in items" 
+            :key="item.id"
         >
-            {{ householdold.surname }}
+            <household-card 
+                :item="item"
+                @click="goToHouseholdView(item.id)"
+            />
         </div>
     </div>
 </template>
 
 <script>
-import Household from '@Household'
+import HouseholdCard from './Card'
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes.js';
 
 export default {
+    props: ['items'],
     mixins: [ RequiresEncyclopediaRoutes ],
-    computed: {
-        households(){
-            return Household.all()
-        }
+    components: {
+        HouseholdCard
     },
 }
 </script>

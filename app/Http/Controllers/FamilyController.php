@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Household;
 use Illuminate\Http\Request;
 
-class FamilyController extends Controller
+class HouseholdController extends Controller
 {
     /**
      * Display a listing of the resource.
