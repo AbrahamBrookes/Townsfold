@@ -21,7 +21,7 @@ class BuildingTypeSeeder extends Seeder
         // A House can have five Residents:
         $house = BuildingType::create([
             'name' => 'House',
-            'description' => 'A small residence for a single family.',
+            'description' => 'A small residence for a single household.',
         ]);
         $resident = JobType::create([
             'name' => 'Resident',

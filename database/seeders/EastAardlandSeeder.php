@@ -32,29 +32,29 @@ class EastAardlandSeeder extends Seeder
             ]);
         }
 
-        // for each town create a couple of families
-        // a Family occupies a House in the town, so this should loosely match the number of houses
+        // for each town create a couple of households
+        // a Household occupies a House in the town, so this should loosely match the number of houses
         include('GeneratedNames/People/SurnamesInEastAardland.php');
         include('GeneratedNames/People/GirlsNamesInEastAardland.php');
         include('GeneratedNames/People/BoysNamesInEastAardland.php');
-        $families = [];
+        $households = [];
         foreach ($towns as $town) {
             $numFamilies = 10;
             for ($i = 0; $i < $numFamilies; $i++) {
-                $families[] = \App\Models\Family::create([
+                $households[] = \App\Models\Household::create([
                     'surname' => Faker::create()->randomElement($SurnamesInEastAardland),
                     'town_id' => $town->id,
                 ]);
 
                 // mum and dad
-                $families[$i]->members()->createMany([
+                $households[$i]->members()->createMany([
                     [
-                        'family_id' => $families[$i]->id,
+                        'household_id' => $households[$i]->id,
                         'name' => Faker::create()->randomElement($GirlsNamesInEastAardland),
                         'gender' => 'F'
                     ],
                     [
-                        'family_id' => $families[$i]->id,
+                        'household_id' => $households[$i]->id,
                         'name' => Faker::create()->randomElement($BoysNamesInEastAardland),
                         'gender' => 'M'
                     ]
@@ -63,8 +63,8 @@ class EastAardlandSeeder extends Seeder
                 $numChildren = rand(0, 3);
                 for ($j = 0; $j < $numChildren; $j++) {
                     $gender = rand(0, 32) %2 == 0 ? 'F' : 'M';
-                    $families[$i]->members()->create([
-                        'family_id' => $families[$i]->id,
+                    $households[$i]->members()->create([
+                        'household_id' => $households[$i]->id,
                         'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInEastAardland : $BoysNamesInEastAardland),
                         'gender' => $gender
                     ]);

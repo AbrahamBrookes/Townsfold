@@ -19,6 +19,7 @@ class CreateJobsTable extends Migration
             $table->unsignedBigInteger('building_id')->references('id')->on('buildings');
             $table->unsignedBigInteger('job_type_id')->references('id')->on('job_types');
             $table->unsignedBigInteger('employee_id')->references('id')->on('employees')->nullable();
+            $table->unsignedBigInteger('noticeboard_id')->references('id')->on('noticeboards')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('salary')->nullable();

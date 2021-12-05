@@ -3,7 +3,7 @@
 import { Model } from '@vuex-orm/core'
 
 import Culture from '@Culture'
-import Family from '@Family'
+import Household from '@Household'
 import Building from '@Building'
 
 export default class Town extends Model {
@@ -18,7 +18,7 @@ export default class Town extends Model {
 			name: this.attr(''),
 			culture_id: this.attr(''),
 			culture: this.belongsTo(Culture, 'culture_id'),
-			families: this.hasMany(Family, 'town_id'),
+			households: this.hasMany(Household, 'town_id'),
 			buildings: this.hasMany(Building, 'town_id'),
 		}
 	}

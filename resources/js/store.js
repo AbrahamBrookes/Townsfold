@@ -12,7 +12,7 @@ VuexORM.use(VuexORMAxios, {
 
 import Town from '@Town'
 import Culture from '@Culture'
-import Family from '@Family'
+import Household from '@Household'
 import Person from '@Person'
 import Building from '@Building'
 import Job from '@Job'
@@ -29,7 +29,7 @@ const database = new VuexORM.Database()
 // Register Models to Database.
 database.register(Town)
 database.register(Culture)
-database.register(Family)
+database.register(Household)
 database.register(Person)
 database.register(Building)
 database.register(Job)

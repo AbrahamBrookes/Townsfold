@@ -16,7 +16,7 @@ class CreatePeopleTable extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('family_id')->references('id')->on('families');
+            $table->unsignedBigInteger('household_id')->references('id')->on('households');
             $table->unsignedBigInteger('spouse_id')->references('id')->on('people')->nullable();
             $table->unsignedBigInteger('mother_id')->references('id')->on('people')->nullable();
             $table->unsignedBigInteger('father_id')->references('id')->on('people')->nullable();

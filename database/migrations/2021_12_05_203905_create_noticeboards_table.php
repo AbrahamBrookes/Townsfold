@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFamiliesPeopleTable extends Migration
+class CreateNoticeboardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateFamiliesPeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('families_people', function (Blueprint $table) {
+        Schema::create('noticeboards', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('family_id')->references('id')->on('families');
-            $table->unsignedBigInteger('person_id')->references('id')->on('people');
-            $table->string('position');
+            $table->unsignedBigInteger('town_id')->references('id')->on('towns');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateFamiliesPeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_person');
+        Schema::dropIfExists('noticeboards');
     }
 }

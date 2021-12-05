@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\Building;
+use App\Models\Noticeboard;
 
 class KatagayamaSeeder extends Seeder
 {
@@ -37,11 +38,10 @@ class KatagayamaSeeder extends Seeder
         include('GeneratedNames/People/SurnamesInKatagayama.php');
         include('GeneratedNames/People/GirlsNamesInKatagayama.php');
         include('GeneratedNames/People/BoysNamesInKatagayama.php');
-        $families = [];
         foreach ($towns as $town) {
 
             // for each town, add some buildings
-            // houses will house families
+            // houses will house households
             $numHouses = rand(5, 12);
             Building::factory()->house()->count($numHouses)->create([
                 'town_id' => $town->id,
@@ -73,14 +73,24 @@ class KatagayamaSeeder extends Seeder
                 ]);
             }
 
+            // a town has a noticeboard
+            $noticeboard = Noticeboard::create([
+                'town_id' => $town->id,
+            ]);
 
+            // all of the jobs that belong to our buildings get posted to the noticeboard
+            $town->buildings->each(function ($building) {
+                $building->advertiseJobs();
+            });
             
 
-            
-            // for each town create a couple of families
-            // a Family occupies a House in the town, so this should match the number of houses
+
+
+            // create the people who live in the town
+            // a Household occupies a House in the town, so this should match the number of houses
+            $households = [];
             for ($i = 0; $i < $numHouses; $i++) {
-                $families[$i] = \App\Models\Family::create([
+                $households[$i] = \App\Models\Household::create([
                     'surname' => Faker::create()->randomElement($SurnamesInKatagayama),
                     'town_id' => $town->id,
                 ]);
@@ -88,13 +98,13 @@ class KatagayamaSeeder extends Seeder
                 // mum and dad
                 $mum = \App\Models\Person::create([
                     'name' => Faker::create()->randomElement($GirlsNamesInKatagayama),
-                    'family_id' => $families[$i]->id,
+                    'household_id' => $households[$i]->id,
                     'gender' => 'F',
                     'age' => rand(22, 47),
                 ]);
                 $dad = \App\Models\Person::create([
                     'name' => Faker::create()->randomElement($BoysNamesInKatagayama),
-                    'family_id' => $families[$i]->id,
+                    'household_id' => $households[$i]->id,
                     'gender' => 'M',
                     'age' => rand(22, 47),
                 ]);
@@ -110,7 +120,7 @@ class KatagayamaSeeder extends Seeder
                 for ($j = 0; $j < $numChildren; $j++) {
                     $gender = rand(0, 32) %2 == 0 ? 'F' : 'M';
                     $kids[] = \App\Models\Person::create([
-                        'family_id' => $families[$i]->id,
+                        'household_id' => $households[$i]->id,
                         'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInKatagayama : $BoysNamesInKatagayama),
                         'gender' => $gender,
                         'age' => rand(0, 13),
@@ -118,7 +128,12 @@ class KatagayamaSeeder extends Seeder
                         'father_id' => $dad->id
                     ]);
                 }
+
+                // the people need to live in houses - each household will apply to live in a house
+                $households[$i]->findHouse();
             }
+
+
         }
 
         

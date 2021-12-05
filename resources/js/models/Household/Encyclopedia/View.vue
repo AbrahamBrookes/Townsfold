@@ -1,6 +1,6 @@
 <template>
-    <div class="family-view">
-        <h1>The {{ family.surname }} family</h1>
+    <div class="household-view">
+        <h1>The {{ household.surname }} household</h1>
         <h2 class="mb-4">of <span class="pointer" @click="goToTownView(town.id)">{{ town.name }}</span></h2>
 
         <div class="row">
@@ -9,11 +9,11 @@
             </div>
             <div class="col-3">
                 <h4>Mother</h4>
-                {{ mother.name }} {{ family.surname }} - {{ mother.age }}yo
+                {{ mother.name }} {{ household.surname }} - {{ mother.age }}yo
             </div>
             <div class="col-3">
                 <h4>Father</h4>
-                {{ father.name }} {{ family.surname }} - {{ father.age }}yo
+                {{ father.name }} {{ household.surname }} - {{ father.age }}yo
             </div>
         </div>
 
@@ -22,7 +22,7 @@
                 <h3>Children</h3>
             </div>
             <div class="col-3" v-for="kid in kids" :key="kid.id">
-                {{ kid.name }} {{ family.surname }} - {{ kid.gender }}, {{ kid.age }}yo
+                {{ kid.name }} {{ household.surname }} - {{ kid.gender }}, {{ kid.age }}yo
             </div>
         </div>
 
@@ -32,10 +32,10 @@
 
 <script>
 import Town from '@Town';
-import Family from '@Family';
+import Household from '@Household';
 import Person from '@Person';
 
-import FamilyCard from '@Family/Encyclopedia/Card';
+import FamilyCard from '@Household/Encyclopedia/Card';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
 
@@ -46,20 +46,20 @@ export default {
         FamilyCard,
     },
     computed: {
-        family() {
-            return Family.find(this.id);
+        household() {
+            return Household.find(this.id);
         },
         town() {
-            return Town.find(this.family.town_id);
+            return Town.find(this.household.town_id);
         },
         mother() {
-            return Person.query().where('gender', 'F').where('family_id', this.id).where('mother_id', null).where('father_id', null).first()
+            return Person.query().where('gender', 'F').where('household_id', this.id).where('mother_id', null).where('father_id', null).first()
         },
         father(){
-            return Person.query().where('gender', 'M').where('family_id', this.id).where('mother_id', null).where('father_id', null).first()
+            return Person.query().where('gender', 'M').where('household_id', this.id).where('mother_id', null).where('father_id', null).first()
         },
         kids(){
-            return Person.query().where('family_id', this.id).where('mother_id', this.mother.id).where('father_id', this.father.id).get()
+            return Person.query().where('household_id', this.id).where('mother_id', this.mother.id).where('father_id', this.father.id).get()
         }
     },
 }

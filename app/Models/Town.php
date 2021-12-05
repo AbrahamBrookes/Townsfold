@@ -14,9 +14,9 @@ class Town extends Model
         'culture_id',
     ];
 
-    public function families()
+    public function households()
     {
-        return $this->hasMany(Family::class);
+        return $this->hasMany(Household::class);
     }
 
     public function culture()
@@ -27,5 +27,15 @@ class Town extends Model
     public function buildings()
     {
         return $this->hasMany(Building::class);
+    }
+
+    public function houses()
+    {
+        return $this->buildings()->where('name', 'House');
+    }
+
+    public function noticeboard()
+    {
+        return $this->hasOne(Noticeboard::class);
     }
 }

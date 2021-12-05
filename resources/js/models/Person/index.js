@@ -2,7 +2,7 @@
 
 import { Model } from '@vuex-orm/core'
 
-import Family from '@Family'
+import Household from '@Household'
 
 export default class Person extends Model {
 	// This is the name used as module name of the Vuex Store.
@@ -14,8 +14,8 @@ export default class Person extends Model {
 		return {
 			id: this.attr(null),
 			name: this.attr(''),
-			family_id: this.attr(''),
-			family: this.belongsTo(Family, 'family_id'),
+			household_id: this.attr(''),
+			household: this.belongsTo(Household, 'household_id'),
 			spouse_id: this.attr(''),
 			spouse: this.belongsTo(Person, 'spouse_id'),
 			mother_id: this.attr(''),

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TownResource extends JsonResource
+class HouseholdResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,10 @@ class TownResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'culture_id' => $this->culture_id,
-            'culture' => $this->culture,
-            'households' => FamilyResource::collection($this->households),
-            'buildings' => BuildingResource::collection($this->buildings),
+            'surname' => $this->surname,
+            'members' => PersonResource::collection($this->members),
+            'town_id' => $this->town_id,
+            'house_id' => $this->house_id,
         ];
     }
 }

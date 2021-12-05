@@ -11,7 +11,7 @@ class Person extends Model
 
     protected $fillable = [
         'name',
-        'family_id',
+        'household_id',
         'spouse_id',
         'mother_id',
         'father_id',
@@ -21,9 +21,9 @@ class Person extends Model
 
     protected $table = 'people';
 
-    public function family()
+    public function household()
     {
-        return $this->belongsTo(Family::class);
+        return $this->belongsTo(Household::class);
     }
 
     public function spouse(){

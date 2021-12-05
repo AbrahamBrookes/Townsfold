@@ -21,17 +21,17 @@
                 </div>
                 <div class="row">
                     <div
-                        v-for="family in town.families"
-                        :key="family.id"
+                        v-for="household in town.households"
+                        :key="household.id"
                         class="col-12"
                     >
                         <div class="alert alert-success">
-                            <h2>The {{ family.surname }} Family</h2>
+                            <h2>The {{ household.surname }} Household</h2>
                         </div>
                         
                         <div class="row">
                             <div
-                                v-for="person in family.members"
+                                v-for="person in household.members"
                                 :key="person.id"
                                 class="col-4"
                             >
@@ -39,7 +39,7 @@
                                         'alert-info': person.gender == 'M',
                                         'alert-danger': person.gender == 'F',
                                     }">
-                                        <h3>{{ person.name }} <small>{{ family.surname }}</small></h3>
+                                        <h3>{{ person.name }} <small>{{ household.surname }}</small></h3>
                                         <p>{{ person.gender }}</p>
                                     </div>
 

@@ -3,14 +3,14 @@
         <h1>The Township of {{ town.name }}</h1>
         <h2 class="mb-4">In the prefecture of <span class="pointer" @click="goToCultureView(culture.id)">{{ culture.nation_name }}</span></h2>
 
-        <div class="town-families row">
+        <div class="town-households row">
             <div class="col-4"
-                v-for="family in families"
-                :key="family.id"
-                @click="goToFamilyView(family.id)"
+                v-for="household in households"
+                :key="household.id"
+                @click="goToFamilyView(household.id)"
             >
-                <family-card
-                    :item="family"
+                <household-card
+                    :item="household"
                 />
                 
             </div>
@@ -22,11 +22,11 @@
 
 <script>
 import Town from '@Town';
-import Family from '@Family';
+import Household from '@Household';
 import Culture from '@Culture';
 import Building from '@Building';
 
-import FamilyCard from '@Family/Encyclopedia/Card';
+import FamilyCard from '@Household/Encyclopedia/Card';
 import BuildingsList from '@Building/Encyclopedia/List';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
@@ -45,8 +45,8 @@ export default {
         culture() {
             return Culture.find(this.town.culture_id);
         },
-        families(){
-            return Family.query().where('town_id', this.id).get();
+        households(){
+            return Household.query().where('town_id', this.id).get();
         },
         buildings(){
             return Building.query().where('town_id', this.id).get();

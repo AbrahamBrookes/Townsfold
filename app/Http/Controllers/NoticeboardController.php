@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Household;
+use App\Models\Noticeboard;
 use Illuminate\Http\Request;
 
-class FamilyController extends Controller
+class NoticeboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class FamilyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Household  $household
+     * @param  \App\Models\Noticeboard  $noticeboard
      * @return \Illuminate\Http\Response
      */
-    public function show(Household $household)
+    public function show(Noticeboard $noticeboard)
     {
         //
     }
@@ -43,10 +43,10 @@ class FamilyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Household  $household
+     * @param  \App\Models\Noticeboard  $noticeboard
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Household $household)
+    public function update(Request $request, Noticeboard $noticeboard)
     {
         //
     }
@@ -54,10 +54,10 @@ class FamilyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Household  $household
+     * @param  \App\Models\Noticeboard  $noticeboard
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Household $household)
+    public function destroy(Noticeboard $noticeboard)
     {
         //
     }

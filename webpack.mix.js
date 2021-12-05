@@ -23,7 +23,7 @@ mix.alias({
 	'@Town': path.resolve(__dirname, 'resources/js/models/Town'),
 	'@Culture': path.resolve(__dirname, 'resources/js/models/Culture'),
 	'@Person': path.resolve(__dirname, 'resources/js/models/Person'),
-	'@Family': path.resolve(__dirname, 'resources/js/models/Family'),
+	'@Household': path.resolve(__dirname, 'resources/js/models/Household'),
 	'@Building': path.resolve(__dirname, 'resources/js/models/Building'),
 	'@BuildingType': path.resolve(__dirname, 'resources/js/models/BuildingType'),
 	'@Job': path.resolve(__dirname, 'resources/js/models/Job'),

@@ -17,6 +17,7 @@ class Job extends Model
         'building_id',
         'job_type_id',
         'employee_id',
+        'noticeboard_id',
         'title',
         'description',
         'salary',
@@ -35,5 +36,19 @@ class Job extends Model
     public function employee()
     {
         return $this->belongsTo(Person::class, 'employee_id');
+    }
+
+    public function noticeboard()
+    {
+        return $this->belongsTo(Noticeboard::class);
+    }
+
+    public function employ(Person $person)
+    {
+        // employ the person
+        $this->employee_id = $person->id;
+        // remove self from noticeboard
+        $this->noticeboard_id = null;
+        $this->save();
     }
 }

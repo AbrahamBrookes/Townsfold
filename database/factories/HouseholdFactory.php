@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Family;
+use App\Models\Household;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FamilyFactory extends Factory
@@ -12,7 +12,7 @@ class FamilyFactory extends Factory
      *
      * @var string
      */
-    protected $model = Family::class;
+    protected $model = Household::class;
 
     /**
      * Define the model's default state.

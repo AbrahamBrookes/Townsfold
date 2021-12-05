@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // prefix api
 Route::prefix('api')->group(function () {
     Route::resource('town', \App\Http\Controllers\TownController::class);
-    Route::resource('family', \App\Http\Controllers\FamilyController::class);
+    Route::resource('household', \App\Http\Controllers\FamilyController::class);
     Route::resource('person', \App\Http\Controllers\PersonController::class);
 });
 

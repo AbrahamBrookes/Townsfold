@@ -1,26 +1,26 @@
 <template>
-    <div class="family-list">
+    <div class="householdold-list">
         <div 
-            v-for="family in families" 
-            :key="family.id"
-            @click="goToFamilyView(family.id)"
+            v-for="householdold in households" 
+            :key="householdold.id"
+            @click="goToFamilyView(householdold.id)"
             class="pointer"
         >
-            {{ family.surname }}
+            {{ householdold.surname }}
         </div>
     </div>
 </template>
 
 <script>
-import Family from '@Family'
+import Household from '@Household'
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes.js';
 
 export default {
     mixins: [ RequiresEncyclopediaRoutes ],
     computed: {
-        families(){
-            return Family.all()
+        households(){
+            return Household.all()
         }
     },
 }
