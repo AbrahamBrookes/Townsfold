@@ -1,12 +1,12 @@
 <template>
     <div class="building-list">
         <div 
-            v-for="building in buildings" 
-            :key="building.id"
-            @click="goToBuildingView(building.id)"
+            v-for="item in items" 
+            :key="item.id"
+            @click="goToBuildingView(item.id)"
             class="pointer"
         >
-            {{ building.name }}
+            {{ item.name }}
         </div>
     </div>
 </template>
@@ -16,7 +16,7 @@
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes.js';
 
 export default {
-    props: ['buildings'],
+    props: ['items'],
     mixins: [ RequiresEncyclopediaRoutes ],
 }
 </script>

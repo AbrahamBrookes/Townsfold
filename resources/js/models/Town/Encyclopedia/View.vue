@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <buildings-list :items="town.buildings" />
+        <buildings-list :items="buildings" />
     </div>
 </template>
 
