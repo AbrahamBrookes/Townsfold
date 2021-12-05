@@ -22,14 +22,10 @@ class BuildingType extends Model
     protected $fillable = [
         'name',
         'description',
-        'image_url',
-        'cost_wood',
-        'cost_stone',
-        'cost_iron',
     ];
 
     public function job_types()
     {
-        return $this->hasMany('App\Models\JobType');
+        return $this->belongsToMany('App\Models\JobType');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuildingTypesJobTypesTable extends Migration
+class CreateBuildingTypeJobTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBuildingTypesJobTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('building_types_job_types', function (Blueprint $table) {
+        Schema::create('building_type_job_type', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('building_type_id')->references('id')->on('building_types');
@@ -29,6 +29,6 @@ class CreateBuildingTypesJobTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('building_types_job_types');
+        Schema::dropIfExists('building_type_job_type');
     }
 }

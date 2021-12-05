@@ -22,7 +22,7 @@ class KatagayamaSeeder extends Seeder
         ]);
 
         // create towns
-        $numTowns = 32;
+        $numTowns = 8;
         include('GeneratedNames/Locations/TownsInKatagayama.php');
         $towns = [];
         for ($i = 0; $i < $numTowns; $i++) {

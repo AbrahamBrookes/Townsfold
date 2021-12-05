@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(BuildingTypeSeeder::class);
         // run the seeder for the location table
         $this->callWith(CultureSeeder::class, [
             'name' => 'East Aardland',
