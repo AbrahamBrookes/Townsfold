@@ -17,6 +17,7 @@ class CreateFamiliesPeopleTable extends Migration
             $table->id();
             $table->unsignedBigInteger('family_id')->references('id')->on('families');
             $table->unsignedBigInteger('person_id')->references('id')->on('people');
+            $table->string('position');
             $table->timestamps();
         });
     }

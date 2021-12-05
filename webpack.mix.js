@@ -13,24 +13,19 @@ const path = require('path')
  */
 mix.options({
     hmrOptions: {
-        host: 'cards.brookesy.dev',
+        host: 'townsfolk.brookesy.dev',
         port: 8080
     }
 })
 
 mix.alias({
-	'@Character': path.resolve(__dirname, 'resources/js/models/Character'),
-	'@Skill': path.resolve(__dirname, 'resources/js/models/Skill'),
-	'@Skillbook': path.resolve(__dirname, 'resources/js/models/Skillbook'),
-	'@Weapon': path.resolve(__dirname, 'resources/js/models/Weapon'),
-	'@WeaponType': path.resolve(__dirname, 'resources/js/models/WeaponType'),
-	'@Armour': path.resolve(__dirname, 'resources/js/models/Armour'),
-	'@ArmourType': path.resolve(__dirname, 'resources/js/models/ArmourType'),
-	'@DamageType': path.resolve(__dirname, 'resources/js/models/DamageType'),
-	'@Deck': path.resolve(__dirname, 'resources/js/models/Deck'),
-	'@Deckable': path.resolve(__dirname, 'resources/js/models/Deckable'),
-	'@Item': path.resolve(__dirname, 'resources/js/models/Item'),
-	'@Spell': path.resolve(__dirname, 'resources/js/models/Spell'),
+	// models
+	'@Town': path.resolve(__dirname, 'resources/js/models/Town'),
+	'@Culture': path.resolve(__dirname, 'resources/js/models/Culture'),
+	'@Person': path.resolve(__dirname, 'resources/js/models/Person'),
+	'@Family': path.resolve(__dirname, 'resources/js/models/Family'),
+	
+	// app
 	'@mixins': path.resolve(__dirname, 'resources/js/mixins'),
 	'@pages': path.resolve(__dirname, 'resources/js/pages'),
 	'@components': path.resolve(__dirname, 'resources/js/components'),

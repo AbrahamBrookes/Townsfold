@@ -47,26 +47,36 @@ class KatagayamaSeeder extends Seeder
                 ]);
 
                 // mum and dad
-                $families[$i]->members()->createMany([
-                    [
-                        'family_id' => $families[$i]->id,
-                        'name' => Faker::create()->randomElement($GirlsNamesInKatagayama),
-                        'gender' => 'F'
-                    ],
-                    [
-                        'family_id' => $families[$i]->id,
-                        'name' => Faker::create()->randomElement($BoysNamesInKatagayama),
-                        'gender' => 'M'
-                    ]
+                $mum = \App\Models\Person::create([
+                    'name' => Faker::create()->randomElement($GirlsNamesInKatagayama),
+                    'family_id' => $families[$i]->id,
+                    'gender' => 'F',
+                    'age' => rand(22, 47),
                 ]);
+                $dad = \App\Models\Person::create([
+                    'name' => Faker::create()->randomElement($BoysNamesInKatagayama),
+                    'family_id' => $families[$i]->id,
+                    'gender' => 'M',
+                    'age' => rand(22, 47),
+                ]);
+                $mum->spouse_id = $dad->id;
+                $dad->spouse_id = $mum->id;
+
+                $mum->save();
+                $dad->save();
+
                 // up to 3 children
                 $numChildren = rand(0, 3);
+                $kids = [];
                 for ($j = 0; $j < $numChildren; $j++) {
                     $gender = rand(0, 32) %2 == 0 ? 'F' : 'M';
-                    $families[$i]->members()->create([
+                    $kids[] = \App\Models\Person::create([
                         'family_id' => $families[$i]->id,
                         'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInKatagayama : $BoysNamesInKatagayama),
-                        'gender' => $gender
+                        'gender' => $gender,
+                        'age' => rand(0, 13),
+                        'mother_id' => $mum->id,
+                        'father_id' => $dad->id
                     ]);
                 }
             }

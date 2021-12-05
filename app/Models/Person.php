@@ -12,13 +12,29 @@ class Person extends Model
     protected $fillable = [
         'name',
         'family_id',
+        'spouse_id',
+        'mother_id',
+        'father_id',
         'gender',
+        'age',
     ];
 
     protected $table = 'people';
 
-    public function families()
+    public function family()
     {
         return $this->belongsTo(Family::class);
+    }
+
+    public function spouse(){
+        return this.belongsTo(Person::class, 'spouse_id');
+    }
+
+    public function mother(){
+        return this.belongsTo(Person::class, 'mother_id');
+    }
+
+    public function father(){
+        return this.belongsTo(Person::class, 'father_id');
     }
 }

@@ -6,22 +6,14 @@ import axios from 'axios'
 import VuexORMAxios from '@vuex-orm/plugin-axios'
 VuexORM.use(VuexORMAxios, {
 	axios,
-	baseURL: 'https://cards.brookesy.dev/',
+	baseURL: 'https://townsfolk.brookesy.dev/',
 	dataKey: 'data'
 })
 
-import Character from '@Character'
-import Skill from '@Skill'
-import Skillbook from '@Skillbook'
-import DamageType from '@DamageType'
-import WeaponType from '@WeaponType'
-import Weapon from '@Weapon'
-import ArmourType from '@ArmourType'
-import Armour from '@Armour'
-import Deck from '@Deck'
-import Deckable from '@Deckable'
-import Item from '@Item'
-import Spell from '@Spell'
+import Town from '@Town'
+import Culture from '@Culture'
+import Family from '@Family'
+import Person from '@Person'
 
 Vue.use(Vuex)
 
@@ -29,24 +21,31 @@ Vue.use(Vuex)
 const database = new VuexORM.Database()
 
 // Register Models to Database.
-database.register(Character)
-database.register(Skill)
-database.register(Skillbook)
-database.register(DamageType)
-database.register(WeaponType)
-database.register(Weapon)
-database.register(ArmourType)
-database.register(Armour)
-database.register(Deck)
-database.register(Deckable)
-database.register(Item)
-database.register(Spell)
+database.register(Town)
+database.register(Culture)
+database.register(Family)
+database.register(Person)
+
+
 
 // Create Vuex Store and register database through Vuex ORM.
 const store = new Vuex.Store({
 	plugins: [VuexORM.install(database)],
 	state: {
-		total_stat_points: 32
+		encyclopediaVisible: false,
+		currentEncyclopediaPage: {
+			component: null,
+			bind: {}
+		},
+	},
+	mutations: {
+		toggleEncyclopedia(state, data = null) {
+			data === null ? state.encyclopediaVisible = !state.encyclopediaVisible : state.encyclopediaVisible = data
+		},
+		setCurrentEncyclopediaPage(state, data) {
+			state.currentEncyclopediaPage = data
+			state.encyclopediaVisible = true
+		}
 	}
 })
 

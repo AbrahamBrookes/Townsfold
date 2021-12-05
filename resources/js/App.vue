@@ -1,6 +1,13 @@
 <template>
     <div>
-        <div v-if="towns.length">
+
+        <b-button
+            @click="toggleEncyclopedia(true)"
+        >
+            Show Encyclopedia
+        </b-button>
+        <encyclopedia />
+        <!--div v-if="towns.length">
             <div 
                 v-for="town in towns"
                 :key="town.id"
@@ -44,27 +51,25 @@
                 </div>
             </div>
             
-        </div>
+        </div-->
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { mapMutations } from 'vuex';
 
+import Encyclopedia from '@pages/Encyclopedia.vue';
+
+import Town from '@Town';
 export default {
-    data() {
-        return {
-            towns: [],
-        }
+    components: {
+        Encyclopedia,
+    },
+    methods: {
+        ...mapMutations(['toggleEncyclopedia']),
     },
     mounted() {
-        axios.get('/api/town')
-            .then(response => {
-                this.towns = response.data.data;
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+        Town.api().get('/')
+    },
 }
 </script>
