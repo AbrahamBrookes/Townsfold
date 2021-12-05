@@ -24,6 +24,12 @@ mix.alias({
 	'@Culture': path.resolve(__dirname, 'resources/js/models/Culture'),
 	'@Person': path.resolve(__dirname, 'resources/js/models/Person'),
 	'@Family': path.resolve(__dirname, 'resources/js/models/Family'),
+	'@Building': path.resolve(__dirname, 'resources/js/models/Building'),
+	'@BuildingType': path.resolve(__dirname, 'resources/js/models/BuildingType'),
+	'@Job': path.resolve(__dirname, 'resources/js/models/Job'),
+	'@JobType': path.resolve(__dirname, 'resources/js/models/JobType'),
+	'@BuildingTypeJobType': path.resolve(__dirname, 'resources/js/models/BuildingTypeJobType'),
+	'@BuildingJob': path.resolve(__dirname, 'resources/js/models/BuildingJob'),
 	
 	// app
 	'@mixins': path.resolve(__dirname, 'resources/js/mixins'),

@@ -14,6 +14,12 @@ import Town from '@Town'
 import Culture from '@Culture'
 import Family from '@Family'
 import Person from '@Person'
+import Building from '@Building'
+import Job from '@Job'
+import BuildingType from '@BuildingType'
+import JobType from '@JobType'
+import BuildingJob from '@BuildingJob'
+import BuildingTypeJobType from '@BuildingTypeJobType'
 
 Vue.use(Vuex)
 
@@ -25,6 +31,13 @@ database.register(Town)
 database.register(Culture)
 database.register(Family)
 database.register(Person)
+database.register(Building)
+database.register(Job)
+database.register(BuildingType)
+database.register(JobType)
+database.register(BuildingJob)
+database.register(BuildingTypeJobType)
+
 
 
 
