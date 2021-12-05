@@ -1,28 +1,23 @@
 <template>
-    <div class="town-list">
+    <div class="building-list">
         <div 
-            v-for="town in towns" 
-            :key="town.id"
-            @click="goToTownView(town.id)"
+            v-for="building in buildings" 
+            :key="building.id"
+            @click="goToBuildingView(building.id)"
             class="pointer"
         >
-            {{ town.name }}
+            {{ building.name }}
         </div>
     </div>
 </template>
 
 <script>
-import Town from '@Town'
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes.js';
 
 export default {
+    props: ['buildings'],
     mixins: [ RequiresEncyclopediaRoutes ],
-    computed: {
-        towns(){
-            return Town.all()
-        }
-    },
 }
 </script>
 

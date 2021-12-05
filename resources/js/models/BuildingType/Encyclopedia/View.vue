@@ -1,7 +1,7 @@
 <template>
     <div class="town-view">
         <h1>The Township of {{ town.name }}</h1>
-        <h2 class="mb-4">In the prefecture of <span class="pointer" @click="goToCulturePage">{{ culture.nation_name }}</span></h2>
+        <h2 class="mb-4">In the prefecture of <span class="pointer" @click="goToCultureView(culture.id)">{{ culture.nation_name }}</span></h2>
 
         <div class="town-families row">
             <div class="col-4"

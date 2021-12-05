@@ -16,7 +16,7 @@ class TownController extends Controller
     public function index()
     {
         // pipe it all through here
-        return TownResource::collection(Town::with(['families.members', 'buildings.jobs'])->get());
+        return TownResource::collection(Town::with(['families.members', 'buildings.jobs', 'buildings.building_type', 'buildings.jobs.job_type'])->get());
     }
 
     /**

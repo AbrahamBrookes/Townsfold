@@ -27,6 +27,6 @@ export default class Job extends Model {
 	}
 
 	static apiConfig = {
-		baseURL: '/api/building',
+		baseURL: '/api/job',
 	}
 }

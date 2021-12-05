@@ -1,5 +1,5 @@
 <template>
-    <div class="town-encyclopedia-card encyclopedia-card">
+    <div class="building-encyclopedia-card encyclopedia-card">
         <div class="card-header">
             <div class="card-header-title">
                 <span class="card-header-title-text">{{ item.name }}</span>

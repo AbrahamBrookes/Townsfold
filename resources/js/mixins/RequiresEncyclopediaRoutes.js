@@ -36,5 +36,17 @@ export default {
                 bind: { id }
             })
         },
+        goToBuildingList() {
+            this.$store.commit('setCurrentEncyclopediaPage', {
+                component: () => import('@Building/Encyclopedia/List.vue'),
+                bind: {}
+            })
+        },
+        goToBuildingView(id) {
+            this.$store.commit('setCurrentEncyclopediaPage', {
+                component: () => import('@Building/Encyclopedia/View.vue'),
+                bind: { id }
+            })
+        },
     },
 }
