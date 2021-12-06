@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 
 use App\Models\BuildingType;
 use App\Models\JobType;
+use App\Models\SkillType;
+use App\Models\Skill;
 
 class BuildingTypeSeeder extends Seeder
 {
@@ -16,6 +18,9 @@ class BuildingTypeSeeder extends Seeder
      */
     public function run()
     {
+        // load some data outside of all loops
+        $skill_types = SkillType::all()->keyBy('name');
+
         // create our base building types and their associated job types
 
         // A House can have five Residents:
@@ -42,26 +47,152 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Publican',
             'description' => 'The man who controls the Beer.',
         ]);
+        $publican->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $publican->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 20
+        ]));
+        $publican->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 40
+        ]));
+        $publican->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Blunt']->id,
+            'person_id' => 0,
+            'level' => 20
+        ]));
+        $publican->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Intimidation']->id,
+            'person_id' => 0,
+            'level' => 20
+        ]));
+
+
         $tapstaff = JobType::create([
             'name' => 'Tapstaff',
             'description' => 'Waiters and waitresses to serve food and drinks.',
         ]);
+        $tapstaff->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $tapstaff->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $tapstaff->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 10
+        ]));
+
+
         $steward = JobType::create([
             'name' => 'Steward',
             'description' => 'Manages the hotel and acommodation facilities.',
         ]);
+        $steward->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 10
+        ]));
+        $steward->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 15
+        ]));
+        $steward->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 30
+        ]));
+        $steward->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 30
+        ]));
+
+
         $cook = JobType::create([
             'name' => 'Cook',
             'description' => 'Someone to cook food.',
         ]);
+        $cook->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Cooking']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $cook->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+        $cook->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+        $cook->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Leadership']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+
+
         $kitchenhand = JobType::create([
             'name' => 'Kitchenhand',
             'description' => 'Someone to help out in a kitchen.',
         ]);
+        $kitchenhand->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Cooking']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $kitchenhand->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $kitchenhand->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Stealth']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+
+
         $musician = JobType::create([
             'name' => 'Musician',
             'description' => 'Someone to play music and entertain.',
         ]);
+        $musician->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Lute']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $musician->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Singing']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $musician->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+        $musician->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 15
+        ]));
+
         $tavern->job_types()->attach($publican->id);
         $tavern->job_types()->attach($tapstaff->id);
         $tavern->job_types()->attach($tapstaff->id);
@@ -77,18 +208,79 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Storehouse',
             'description' => 'A place to store goods and supplies.',
         ]);
+
         $clerk = JobType::create([
             'name' => 'Clerk',
             'description' => 'Someone to keep the books tidy.',
         ]);
+        $clerk->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 10
+        ]));
+        $clerk->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Numbers']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $clerk->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $clerk->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+
+
         $storeManager = JobType::create([
             'name' => 'Store Manager',
             'description' => 'Someone to manage the store.',
         ]);
+        $storeManager->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+        $storeManager->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Leadership']->id,
+            'person_id' => 0,
+            'level' => 40
+        ]));
+        $storeManager->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $storeManager->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+
+
         $storekeeper = JobType::create([
             'name' => 'Storekeeper',
             'description' => 'Someone to help out in the store.',
         ]);
+        $storekeeper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Persuasion']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $storekeeper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $storekeeper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+
         $storehouse->job_types()->attach($storekeeper->id);
         $storehouse->job_types()->attach($storekeeper->id);
         $storehouse->job_types()->attach($storekeeper->id);
@@ -101,10 +293,28 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Butcher',
             'description' => 'A place that butchers and sells meat.',
         ]);
+
         $butcherJob = JobType::create([
             'name' => 'Butcher',
             'description' => 'Someone who chops and prepares meat.',
         ]);
+        $butcherJob->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Cooking']->id,
+            'person_id' => 0,
+            'level' => 10
+        ]));
+        $butcherJob->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $butcherJob->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Hygiene']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+
+
         $butcher->job_types()->attach($butcherJob->id);
         $butcher->job_types()->attach($butcherJob->id);
         $butcher->job_types()->attach($butcherJob->id);
@@ -114,14 +324,48 @@ class BuildingTypeSeeder extends Seeder
             'name' => 'Woodshack',
             'description' => 'A place that chops and sells firewood.',
         ]);
+
         $foreman = JobType::create([
             'name' => 'Foreman',
             'description' => 'Someone to oversee the worksite.',
         ]);
+        $foreman->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Leadership']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $foreman->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 50
+        ]));
+        $foreman->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 25
+        ]));
+
+
         $chopper = JobType::create([
             'name' => 'Chopper',
             'description' => 'Someone to chop wood.',
         ]);
+        $chopper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Axe']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $chopper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Logistics']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        $chopper->required_skills()->save(Skill::create([
+            'skill_type_id' => $skill_types['Trade']->id,
+            'person_id' => 0,
+            'level' => 5
+        ]));
+        
         $woodshack->job_types()->attach($foreman->id);
         $woodshack->job_types()->attach($clerk->id);
         $woodshack->job_types()->attach($chopper->id);

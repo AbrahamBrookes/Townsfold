@@ -48,5 +48,17 @@ export default {
                 bind: { id }
             })
         },
+        goToPersonList() {
+            this.$store.commit('setCurrentEncyclopediaPage', {
+                component: () => import('@Person/Encyclopedia/List.vue'),
+                bind: {}
+            })
+        },
+        goToPersonView(id) {
+            this.$store.commit('setCurrentEncyclopediaPage', {
+                component: () => import('@Person/Encyclopedia/View.vue'),
+                bind: { id }
+            })
+        },
     },
 }

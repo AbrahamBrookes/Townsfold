@@ -37,4 +37,8 @@ class Person extends Model
     public function father(){
         return this.belongsTo(Person::class, 'father_id');
     }
+
+    public function skills(){
+        return $this->hasMany(Skill::class);
+    }
 }

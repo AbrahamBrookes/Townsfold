@@ -20,6 +20,7 @@ mix.options({
 
 mix.alias({
 	// models
+	'@models': path.resolve(__dirname, 'resources/js/models'),
 	'@Town': path.resolve(__dirname, 'resources/js/models/Town'),
 	'@Culture': path.resolve(__dirname, 'resources/js/models/Culture'),
 	'@Person': path.resolve(__dirname, 'resources/js/models/Person'),

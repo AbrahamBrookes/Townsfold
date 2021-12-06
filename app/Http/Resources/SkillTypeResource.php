@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PersonResource extends JsonResource
+class SkillTypeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,13 +17,7 @@ class PersonResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'gender' => $this->gender,
-            'age' => $this->age,
-            'household_id' => $this->household_id,
-            'spouse_id' => $this->spouse_id,
-            'mother_id' => $this->mother_id,
-            'father_id' => $this->father_id,
-            'skills' => SkillResource::collection($this->skills),
+            'description' => $this->description
         ];
     }
 }

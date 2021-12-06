@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Town;
-use App\Http\Resources\TownResource;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
-class TownController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +14,7 @@ class TownController extends Controller
      */
     public function index()
     {
-        // pipe it all through here
-        return TownResource::collection(Town::with([
-            'households.members', 
-            'households.members.skills.skill_type', 
-            'buildings.jobs', 
-            'buildings.building_type', 
-            'buildings.jobs.job_type'
-        ])->get());
+        //
     }
 
     /**
@@ -39,10 +31,10 @@ class TownController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Town  $town
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function show(Town $town)
+    public function show(Skill $skill)
     {
         //
     }
@@ -51,10 +43,10 @@ class TownController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Town  $town
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Town $town)
+    public function update(Request $request, Skill $skill)
     {
         //
     }
@@ -62,10 +54,10 @@ class TownController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Town  $town
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Town $town)
+    public function destroy(Skill $skill)
     {
         //
     }

@@ -65,3 +65,7 @@ legend {
 .pointer {
   cursor: pointer;
 }
+
+.no-child-events * {
+  pointer-events: none !important;
+}

@@ -1,38 +1,50 @@
 <template>
-    <div class="town-encyclopedia-card encyclopedia-card">
-        <div class="card-header">
-            <div class="card-header-title">
-                <span class="card-header-title-text">{{ item.name }}</span>
+    <encyclopedia-card :model="model" :item="job">
+        <template v-slot:title>
+            <div v-if="job.id === undefined">
+                <p><b>Unemployed</b></p>
             </div>
-            <div class="card-header-image">
-                <img :src="imageUrl" width="50px" alt="">
+            <div v-else>
+                <p>
+                    <b>{{ job.title }}</b> at <b>{{ building.name }}</b> <br />
+                    <b>Salary:</b> {{ job.salary }}
+                </p>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="card-body-content">
-                <div class="card-body-content-title">
-                    <span class="card-body-content-title-text">{{ item.name }}</span>
-                </div>
-                <div class="card-body-content-description">
-                    <span class="card-body-content-description-text">{{ item.description }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        </template>
+        <template v-slot:description>
+        </template>
+    </encyclopedia-card>
+    
 </template>
 
 <script>
+import Job from '@Job'
+import Building from '@Building'
+
+import EncyclopediaCard from '@models/EncyclopediaCard.vue'
 export default {
     props: {
         item: {
-            type: Object,
-            required: true
+            required: true,
         }
+    },
+    components: {
+        EncyclopediaCard
     },
     computed: {
         imageUrl() {
-            return `/img/icon-town.png`;
-        }
+            return `/img/icon-job.png`;
+        },
+        model() {
+            return Job;
+        },
+        job(){
+            return Job.find(this.item?.id) ?? {}
+        },
+        building(){
+            return Building.find(this.job?.building_id) ?? {}
+        },
+        
     }
 }
 </script>

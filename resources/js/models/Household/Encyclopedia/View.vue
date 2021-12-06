@@ -7,13 +7,13 @@
             <div class="col-12">
                 <h3>Parents</h3>
             </div>
-            <div class="col-3">
+            <div class="col-3 no-child-events pointer" @click="goToPersonView(mother.id)">
                 <h4>Mother</h4>
-                {{ mother.name }} {{ household.surname }} - {{ mother.age }}yo
+                <person-card :item="mother"></person-card>
             </div>
-            <div class="col-3">
+            <div class="col-3 no-child-events pointer" @click="goToPersonView(mother.id)">
                 <h4>Father</h4>
-                {{ father.name }} {{ household.surname }} - {{ father.age }}yo
+                <person-card :item="father"></person-card>
             </div>
         </div>
 
@@ -21,8 +21,13 @@
             <div class="col-12">
                 <h3>Children</h3>
             </div>
-            <div class="col-3" v-for="kid in kids" :key="kid.id">
-                {{ kid.name }} {{ household.surname }} - {{ kid.gender }}, {{ kid.age }}yo
+            <div 
+                class="col-3 no-child-events pointer" 
+                v-for="kid in kids" 
+                :key="kid.id"
+                @click="goToPersonView(kid.id)"
+            >
+                <person-card :item="kid"></person-card>
             </div>
         </div>
 
@@ -36,6 +41,7 @@ import Household from '@Household';
 import Person from '@Person';
 
 import HouseholdCard from '@Household/Encyclopedia/Card';
+import PersonCard from '@Person/Encyclopedia/Card';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
 
@@ -44,6 +50,7 @@ export default {
     mixins: [ RequiresEncyclopediaRoutes ],
     components: {
         HouseholdCard,
+        PersonCard
     },
     computed: {
         household() {

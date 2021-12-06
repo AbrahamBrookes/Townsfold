@@ -25,4 +25,9 @@ class JobType extends Model
     {
         return $this->belongsToMany(BuildingType::class); // ->withPivot('level'); 
     }
+
+    public function required_skills()
+    {
+        return $this->belongsToMany(Skill::class, 'job_type_skill');
+    }
 }

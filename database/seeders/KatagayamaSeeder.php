@@ -95,16 +95,34 @@ class KatagayamaSeeder extends Seeder
                     'name' => Faker::create()->randomElement($GirlsNamesInKatagayama),
                     'household_id' => $households[$i]->id,
                     'gender' => 'F',
-                    'age' => rand(22, 47),
+                    'age' => rand(42, 67),
                 ]);
                 $dad = \App\Models\Person::create([
                     'name' => Faker::create()->randomElement($BoysNamesInKatagayama),
                     'household_id' => $households[$i]->id,
                     'gender' => 'M',
-                    'age' => rand(22, 47),
+                    'age' => rand(42, 67),
                 ]);
                 $mum->spouse_id = $dad->id;
                 $dad->spouse_id = $mum->id;
+
+                // give them 4 skills each
+                $skill_types = \App\Models\SkillType::all();
+                for ($j = 0; $j < 4; $j++) {
+                    $mum_skill_type = Faker::create()->randomElement($skill_types);
+                    $mum_skill = \App\Models\Skill::create([
+                        'person_id' => $mum->id,
+                        'skill_type_id' => $mum_skill_type->id,
+                        'level' => rand(15, 50),
+                    ]);
+
+                    $dad_skill_type = Faker::create()->randomElement($skill_types);
+                    $dad_skill = \App\Models\Skill::create([
+                        'person_id' => $dad->id,
+                        'skill_type_id' => $dad_skill_type->id,
+                        'level' => rand(15, 50),
+                    ]);
+                }
 
                 $mum->save();
                 $dad->save();
@@ -114,14 +132,40 @@ class KatagayamaSeeder extends Seeder
                 $kids = [];
                 for ($j = 0; $j < $numChildren; $j++) {
                     $gender = rand(0, 32) %2 == 0 ? 'F' : 'M';
-                    $kids[] = \App\Models\Person::create([
+                    $kids[$j] = \App\Models\Person::create([
                         'household_id' => $households[$i]->id,
                         'name' => Faker::create()->randomElement(  $gender === 'F' ? $GirlsNamesInKatagayama : $BoysNamesInKatagayama),
                         'gender' => $gender,
-                        'age' => rand(0, 13),
+                        'age' => rand(0, 23),
                         'mother_id' => $mum->id,
                         'father_id' => $dad->id
                     ]);
+
+                    // give them one skill each from mum and dad and two of their own. since the loop up there
+                    // leaves some variables around we'll just use them
+                    $kids_dad_skill = \App\Models\Skill::create([
+                        'person_id' =>  $kids[$j]->id,
+                        'skill_type_id' => $dad_skill_type->id,
+                        'level' => rand(5, 20),
+                    ]);
+                    $kids_mum_skill = \App\Models\Skill::create([
+                        'person_id' =>  $kids[$j]->id,
+                        'skill_type_id' => $mum_skill_type->id,
+                        'level' => rand(5, 20),
+                    ]);
+                    $skill_type_1 = Faker::create()->randomElement($skill_types);
+                    \App\Models\Skill::create([
+                        'person_id' =>  $kids[$j]->id,
+                        'skill_type_id' => $skill_type_1->id,
+                        'level' => 5,
+                    ]);
+                    $skill_type_2 = Faker::create()->randomElement($skill_types);
+                    \App\Models\Skill::create([
+                        'person_id' =>  $kids[$j]->id,
+                        'skill_type_id' => $skill_type_2->id,
+                        'level' => 5,
+                    ]);
+
                 }
 
                 // the people need to live in houses - each household will apply to live in a house
@@ -132,8 +176,7 @@ class KatagayamaSeeder extends Seeder
             $town->buildings->each(function ($building) {
                 $building->advertiseJobs();
             });
-
-            // those people all need jobs as well
+            
         }
 
         

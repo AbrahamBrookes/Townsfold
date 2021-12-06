@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(SkillTypeSeeder::class); // needs to run before BuildingType so that JobTypes can have Skills
         $this->call(BuildingTypeSeeder::class);
         // run the seeder for the location table
         $this->callWith(CultureSeeder::class, [

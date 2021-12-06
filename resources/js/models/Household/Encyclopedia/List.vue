@@ -1,13 +1,13 @@
 <template>
     <div class="household-list row">
         <div 
-            class="col-4"
+            class="col-4 no-child-events pointer"
             v-for="item in items" 
             :key="item.id"
+            @click.stop.prevent="goToHouseholdView(item.id)"
         >
             <household-card 
                 :item="item"
-                @click="goToHouseholdView(item.id)"
             />
         </div>
     </div>
