@@ -26,4 +26,9 @@ class Skill extends Model
     {
         return $this->belongsTo('App\Models\Person');
     }
+
+    public function getNameAttribute()
+    {
+        return $this->skill_type->name;
+    }
 }

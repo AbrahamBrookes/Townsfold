@@ -18,6 +18,13 @@ class Noticeboard extends Model
 
     public function jobs()
     {
-        return $this->hasMany(Job::class);
+        return $this->hasMany(Job::class, 'noticeboard_id');
+    }
+
+    public function giveJob(Person $person, Job $job)
+    {
+        $job->noticeboard_id = null;
+        $job->employee_id = $person->id;
+        $job->save();
     }
 }

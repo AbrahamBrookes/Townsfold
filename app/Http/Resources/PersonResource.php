@@ -24,6 +24,7 @@ class PersonResource extends JsonResource
             'mother_id' => $this->mother_id,
             'father_id' => $this->father_id,
             'skills' => SkillResource::collection($this->skills),
+            'job' => new JobResource($this->job),
         ];
     }
 }

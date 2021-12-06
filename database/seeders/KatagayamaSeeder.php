@@ -84,6 +84,7 @@ class KatagayamaSeeder extends Seeder
             // create the people who live in the town
             // a Household occupies a House in the town, so this should match the number of houses
             $households = [];
+            $people = [];
             for ($i = 0; $i < $numHouses; $i++) {
                 $households[$i] = \App\Models\Household::create([
                     'surname' => Faker::create()->randomElement($SurnamesInKatagayama),
@@ -126,6 +127,7 @@ class KatagayamaSeeder extends Seeder
 
                 $mum->save();
                 $dad->save();
+                array_push($people, $mum, $dad);
 
                 // up to 3 children
                 $numChildren = rand(0, 3);
@@ -166,6 +168,8 @@ class KatagayamaSeeder extends Seeder
                         'level' => 5,
                     ]);
 
+                    array_push($people, $kids[$j]);
+
                 }
 
                 // the people need to live in houses - each household will apply to live in a house
@@ -175,6 +179,11 @@ class KatagayamaSeeder extends Seeder
             // all of the remaining jobs that belong to our buildings get posted to the noticeboard
             $town->buildings->each(function ($building) {
                 $building->advertiseJobs();
+            });
+
+            // all of the people in the town should look for work
+            collect($people)->each(function ($person) {
+                $person->findWork();
             });
             
         }

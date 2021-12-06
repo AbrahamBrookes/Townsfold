@@ -21,6 +21,8 @@ import JobType from '@JobType'
 import BuildingJob from '@BuildingJob'
 import BuildingTypeJobType from '@BuildingTypeJobType'
 import Noticeboard from '@Noticeboard'
+import SkillType from '@SkillType'
+import Skill from '@Skill'
 
 Vue.use(Vuex)
 
@@ -39,6 +41,8 @@ database.register(JobType)
 database.register(BuildingJob)
 database.register(BuildingTypeJobType)
 database.register(Noticeboard)
+database.register(SkillType)
+database.register(Skill)
 
 
 

@@ -3,6 +3,8 @@
 import { Model } from '@vuex-orm/core'
 
 import Household from '@Household'
+import Skill from '@Skill'
+import Job from '@Job'
 
 export default class Person extends Model {
 	// This is the name used as module name of the Vuex Store.
@@ -24,6 +26,8 @@ export default class Person extends Model {
 			father: this.belongsTo(Person, 'father_id'),
 			gender: this.attr(''),
 			age: this.attr(''),
+			skills: this.hasMany(Skill, 'person_id'),
+			job: this.hasMany(Job, 'employee_id')
 		}
 	}
 

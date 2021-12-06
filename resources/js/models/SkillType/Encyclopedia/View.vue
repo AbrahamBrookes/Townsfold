@@ -7,45 +7,19 @@
             <div class="col-12">
                 <h3>Parents</h3>
             </div>
-            <div class="col-3 no-child-events pointer" @click="goToPersonView(mother.id)">
+            <div class="col-3">
                 <h4>Mother</h4>
-                <person-card :item="mother"></person-card>
+                {{ mother.name }} {{ household.surname }} - {{ mother.age }}yo
             </div>
-            <div class="col-3 no-child-events pointer" @click="goToPersonView(father.id)">
+            <div class="col-3">
                 <h4>Father</h4>
-                <person-card :item="father"></person-card>
-            </div>
-        </div>
-        
-        <div class="row" v-if="children.length">
-            <div class="col-12">
-                <h3>Children</h3>
-            </div>
-            <div 
-                class="col-3 no-child-events pointer" 
-                v-for="kid in children" 
-                :key="kid.id"
-                @click="goToPersonView(kid.id)"
-            >
-                <person-card :item="kid"></person-card>
+                {{ father.name }} {{ household.surname }} - {{ father.age }}yo
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12">
-                <h3>Employment</h3>
-            </div>
             <div class="col-4">
                 <job-card :item="job" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <h3>Skills</h3>
-            </div>
-            <div class="col-4" v-for="skill in skills" :key="skill.id">
-                <skill-card :item="skill" />
             </div>
         </div>
 
@@ -59,11 +33,8 @@ import Household from '@Household';
 import Person from '@Person';
 import Job from '@Job';
 import Building from '@Building';
-import Skill from '@Skill';
 
 import JobCard from '@Job/Encyclopedia/Card';
-import SkillCard from '@Skill/Encyclopedia/Card';
-import PersonCard from '@Person/Encyclopedia/Card';
 
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes';
 
@@ -72,8 +43,6 @@ export default {
     mixins: [ RequiresEncyclopediaRoutes ],
     components: {
         JobCard,
-        SkillCard,
-        PersonCard
     },
     computed: {
         person(){
@@ -108,18 +77,6 @@ export default {
                 .where('id', '!=', this.father.id)
             .get()
         },
-        children(){
-            return Person.query()
-                .where('household_id', this.household.id)
-                .where('mother_id', this.person.id)
-                .orWhere('father_id', this.person.id)
-            .get()
-        },
-        skills(){
-            return Skill.query()
-                .where('person_id', this.person.id)
-            .get()
-        }
     },
 }
 </script>
