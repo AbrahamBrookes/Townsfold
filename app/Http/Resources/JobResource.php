@@ -25,6 +25,7 @@ class JobResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'salary' => $this->salary,
+            'tier' => $this->tier,
             'noticeboard_id' => $this->noticeboard_id,
             'noticeboard' => new NoticeboardResource($this->whenLoaded('noticeboard')),
         ];

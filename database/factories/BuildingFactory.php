@@ -41,6 +41,7 @@ class BuildingFactory extends Factory
                     'job_type_id' => $job_type->id,
                     'title' => $job_type->name,
                     'description' => $job_type->description,
+                    'tier' => $job_type->tier,
                 ]));
             });
         });

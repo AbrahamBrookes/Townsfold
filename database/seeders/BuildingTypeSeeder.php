@@ -31,6 +31,7 @@ class BuildingTypeSeeder extends Seeder
         $resident = JobType::create([
             'name' => 'Resident',
             'description' => 'Someone to live in a house.',
+            'tier' => 1,
         ]);
         $house->job_types()->attach($resident->id);
         $house->job_types()->attach($resident->id);
@@ -46,6 +47,7 @@ class BuildingTypeSeeder extends Seeder
         $publican = JobType::create([
             'name' => 'Publican',
             'description' => 'The man who controls the Beer.',
+            'tier' => 3,
         ]);
         $publican->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Logistics']->id,
@@ -77,6 +79,7 @@ class BuildingTypeSeeder extends Seeder
         $tapstaff = JobType::create([
             'name' => 'Tapstaff',
             'description' => 'Waiters and waitresses to serve food and drinks.',
+            'tier' => 1,
         ]);
         $tapstaff->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Persuasion']->id,
@@ -98,6 +101,7 @@ class BuildingTypeSeeder extends Seeder
         $steward = JobType::create([
             'name' => 'Steward',
             'description' => 'Manages the hotel and acommodation facilities.',
+            'tier' => 2,
         ]);
         $steward->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Persuasion']->id,
@@ -124,6 +128,7 @@ class BuildingTypeSeeder extends Seeder
         $cook = JobType::create([
             'name' => 'Cook',
             'description' => 'Someone to cook food.',
+            'tier' => 2,
         ]);
         $cook->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Cooking']->id,
@@ -150,6 +155,7 @@ class BuildingTypeSeeder extends Seeder
         $kitchenhand = JobType::create([
             'name' => 'Kitchenhand',
             'description' => 'Someone to help out in a kitchen.',
+            'tier' => 1,
         ]);
         $kitchenhand->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Cooking']->id,
@@ -171,6 +177,7 @@ class BuildingTypeSeeder extends Seeder
         $musician = JobType::create([
             'name' => 'Musician',
             'description' => 'Someone to play music and entertain.',
+            'tier' => 2,
         ]);
         $musician->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Lute']->id,
@@ -212,6 +219,7 @@ class BuildingTypeSeeder extends Seeder
         $clerk = JobType::create([
             'name' => 'Clerk',
             'description' => 'Someone to keep the books tidy.',
+            'tier' => 2,
         ]);
         $clerk->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Persuasion']->id,
@@ -238,6 +246,7 @@ class BuildingTypeSeeder extends Seeder
         $storeManager = JobType::create([
             'name' => 'Store Manager',
             'description' => 'Someone to manage the store.',
+            'tier' => 3,
         ]);
         $storeManager->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Persuasion']->id,
@@ -264,6 +273,7 @@ class BuildingTypeSeeder extends Seeder
         $storekeeper = JobType::create([
             'name' => 'Storekeeper',
             'description' => 'Someone to help out in the store.',
+            'tier' => 1,
         ]);
         $storekeeper->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Persuasion']->id,
@@ -297,6 +307,7 @@ class BuildingTypeSeeder extends Seeder
         $butcherJob = JobType::create([
             'name' => 'Butcher',
             'description' => 'Someone who chops and prepares meat.',
+            'tier' => 2,
         ]);
         $butcherJob->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Cooking']->id,
@@ -328,6 +339,7 @@ class BuildingTypeSeeder extends Seeder
         $foreman = JobType::create([
             'name' => 'Foreman',
             'description' => 'Someone to oversee the worksite.',
+            'tier' => 3,
         ]);
         $foreman->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Leadership']->id,
@@ -349,6 +361,7 @@ class BuildingTypeSeeder extends Seeder
         $chopper = JobType::create([
             'name' => 'Chopper',
             'description' => 'Someone to chop wood.',
+            'tier' => 1,
         ]);
         $chopper->required_skills()->save(Skill::create([
             'skill_type_id' => $skill_types['Axe']->id,

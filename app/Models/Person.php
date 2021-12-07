@@ -60,17 +60,26 @@ class Person extends Model
 
         // look at the noticeboard in your town to find all the available jobs
         $my_skills = $this->skills->keyBy('name');
-        $this->household->town->noticeboard->jobs()->each(function($job) use ($my_skills){
+        $this->household->town->noticeboard->jobs()->where('tier', '!=', '1')->each(function($job) use ($my_skills){
             // if we have skills and the job requires those skills then take the job
             // just match any single skill for now, we can grow the logic later
             $required_skills = $job->job_type->required_skills->keyBy('name');
             
             if( $required_skills->keys()->intersect($my_skills->keys())->count() > 0 ){
-                $this->job()->save($job);
                 $this->household->town->noticeboard->giveJob($this, $job);
                 return $job;
             }
         });
+
+        // we haven't been able to find a job that matches so just take any tier 1 job
+        $tier1jobs = $this->household->town->noticeboard->jobs()->where('tier', '1')->get();
+        if(count($tier1jobs)){
+            $job = collect($tier1jobs)->random();
+            $this->household->town->noticeboard->giveJob($this, $job);
+            return $job;
+        }
+        // else no jobs available
+        return false;
 
     }
 }

@@ -23,6 +23,7 @@ class CreateJobsTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('salary')->nullable();
+            $table->integer('tier')->nullable();
         });
     }
 

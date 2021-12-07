@@ -21,6 +21,7 @@ class Job extends Model
         'title',
         'description',
         'salary',
+        'tier',
     ];
 
     public function building()
