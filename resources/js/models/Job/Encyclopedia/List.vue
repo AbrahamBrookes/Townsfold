@@ -5,19 +5,21 @@
             :key="item.id"
             class="pointer"
         >
-            <h2>{{ item.title }}</h2>
-            <p>{{ item.description }}</p>
+            <job-card :item="item" />
         </div>
     </div>
 </template>
 
 <script>
-
+import JobCard from '@Job/Encyclopedia/Card';
 import RequiresEncyclopediaRoutes from '@mixins/RequiresEncyclopediaRoutes.js';
 
 export default {
     mixins: [ RequiresEncyclopediaRoutes ],
     props: ['items'],
+    components: {
+        JobCard,
+    }
 }
 </script>
 

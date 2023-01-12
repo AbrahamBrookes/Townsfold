@@ -88,8 +88,9 @@ export default {
         job(){
             return Job.query()
                 .where('employee_id', this.id)
-                .where('title', '!=', 'Resident') // rule out houses
-            .first()
+                //.where('title', '!=', 'Resident') // rule out houses
+            //.first()
+            .get()
         },
         building(){
             return Building.query().where('id', this.job.building_id).first()
